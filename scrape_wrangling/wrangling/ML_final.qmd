@@ -1,0 +1,123 @@
+```{r warning = false}
+library(tidyverse)
+library(rvest)
+library(janitor)
+library(dplyr)
+library(prismatic)
+library(broom)
+library(purrr)
+```
+
+```{r}
+selected_columns <- c("Date", "HomeTeam", "AwayTeam", "FTR",
+                      "B365H", "B365D", "B365A", # Odds from Bet365
+                      #"BWH", "BWD", "BWA",       # Odds from Betway
+                      "WHH", "WHD", "WHA")       # Odds from William Hill
+
+data_24 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/24.csv") %>% select(all_of(selected_columns))
+data_23 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/23.csv")%>% select(all_of(selected_columns))
+data_22 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/22.csv")%>% select(all_of(selected_columns))
+data_21 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/21.csv")%>% select(all_of(selected_columns))
+data_20 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/20.csv")%>% select(all_of(selected_columns))
+data_19 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/19.csv")%>% select(all_of(selected_columns))
+data_18 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/18.csv")%>% select(all_of(selected_columns))
+data_17 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/17.csv")%>% select(all_of(selected_columns))
+data_16 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/16.csv")%>% select(all_of(selected_columns))
+data_15 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/15.csv")%>% select(all_of(selected_columns))
+data_14 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/14.csv")%>% select(all_of(selected_columns))
+data_13 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/13.csv")%>% select(all_of(selected_columns))
+data_12 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/12.csv")%>% select(all_of(selected_columns))
+data_11 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/11.csv")%>% select(all_of(selected_columns))
+data_10 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/10.csv")%>% select(all_of(selected_columns))
+data_09 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/9.csv")%>% select(all_of(selected_columns))
+data_08 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/8.csv")%>% select(all_of(selected_columns))
+data_07 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/7.csv")%>% select(all_of(selected_columns))
+data_06 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/6.csv")%>% select(all_of(selected_columns))
+data_05 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/5.csv")%>% select(all_of(selected_columns))
+data_04 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/4.csv")%>% select(all_of(selected_columns))
+data_03 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/3.csv")%>% select(all_of(selected_columns))
+#data_02 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/2.csv")%>% select(all_of(selected_columns))
+#data_01 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/1.csv")%>% select(all_of(selected_columns))
+```
+
+```{r}
+final_data_ENG <- rbind(data_24, data_23, data_22, data_21, data_20, data_19, data_18, 
+                       data_17, data_16, data_15, data_14, data_13, data_12, data_11, 
+                       data_10, data_09, data_08, data_07, data_06, data_05, data_04, 
+                       data_03)
+
+#write_csv(final_data, "~/Documents/GitHub/ML_Final_Proj_Data/final_data.csv")
+```
+
+```{r}
+dataD_24 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(2).csv") %>% select(all_of(selected_columns))
+dataD_23 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(3).csv")%>% select(all_of(selected_columns))
+dataD_22 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(4).csv")%>% select(all_of(selected_columns))
+dataD_21 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(5).csv")%>% select(all_of(selected_columns))
+dataD_20 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(6).csv")%>% select(all_of(selected_columns))
+dataD_19 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(7).csv")%>% select(all_of(selected_columns))
+dataD_18 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(8).csv")%>% select(all_of(selected_columns))
+dataD_17 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(9).csv")%>% select(all_of(selected_columns))
+dataD_16 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(10).csv")%>% select(all_of(selected_columns))
+dataD_15 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(11).csv")%>% select(all_of(selected_columns))
+dataD_14 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(12).csv")%>% select(all_of(selected_columns))
+dataD_13 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(13).csv")%>% select(all_of(selected_columns))
+dataD_12 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(14).csv")%>% select(all_of(selected_columns))
+dataD_11 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(15).csv")%>% select(all_of(selected_columns))
+dataD_10 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(16).csv")%>% select(all_of(selected_columns))
+dataD_09 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(17).csv")%>% select(all_of(selected_columns))
+dataD_08 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(18).csv")%>% select(all_of(selected_columns))
+dataD_07 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(19).csv")%>% select(all_of(selected_columns))
+dataD_06 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(20).csv")%>% select(all_of(selected_columns))
+dataD_05 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(21).csv")%>% select(all_of(selected_columns))
+dataD_04 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(22).csv")%>% select(all_of(selected_columns))
+dataD_03 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/SP1(23).csv")%>% select(all_of(selected_columns))
+
+final_data_ESP <- rbind(dataD_24, dataD_23, dataD_22, dataD_21, dataD_20, dataD_19, dataD_18,dataD_17, dataD_16, dataD_15, dataD_14, dataD_13, dataD_12, dataD_11, dataD_10, dataD_09, dataD_08, dataD_07, dataD_06, dataD_05, dataD_04, dataD_03)
+
+write_csv(final_data_ESP, "~/Documents/GitHub/ML_Final_Proj_Data/final_data_ESP.csv")
+```
+
+```{r}
+final_data_GER_ENG <- rbind(final_data_GER, final_data_ENG)
+write_csv(final_data_GER_ENG, "~/Documents/GitHub/ML_Final_Proj_Data/final_data_GER_ENG.csv")
+```
+
+```{r}
+dataE_24 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1.csv") %>% select(all_of(selected_columns))
+dataE_23 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(1).csv")%>% select(all_of(selected_columns))
+dataE_22 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(2).csv")%>% select(all_of(selected_columns))
+dataE_21 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(3).csv")%>% select(all_of(selected_columns))
+dataE_20 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(4).csv")%>% select(all_of(selected_columns))
+dataE_19 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(5).csv")%>% select(all_of(selected_columns))
+dataE_18 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(6).csv")%>% select(all_of(selected_columns))
+dataE_17 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(7).csv")%>% select(all_of(selected_columns))
+dataE_16 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(8).csv")%>% select(all_of(selected_columns))
+dataE_15 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(9).csv")%>% select(all_of(selected_columns))
+dataE_14 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(10).csv")%>% select(all_of(selected_columns))
+dataE_13 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(11).csv")%>% select(all_of(selected_columns))
+dataE_12 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(12).csv")%>% select(all_of(selected_columns))
+dataE_11 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(13).csv")%>% select(all_of(selected_columns))
+dataE_10 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(14).csv")%>% select(all_of(selected_columns))
+dataE_09 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(15).csv")%>% select(all_of(selected_columns))
+dataE_08 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(16).csv")%>% select(all_of(selected_columns))
+dataE_07 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(17).csv")%>% select(all_of(selected_columns))
+dataE_06 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(18).csv")%>% select(all_of(selected_columns))
+dataE_05 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(19).csv")%>% select(all_of(selected_columns))
+dataE_04 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(20).csv")%>% select(all_of(selected_columns))
+dataE_03 <- read_csv("~/Documents/GitHub/ML_Final_Proj_Data/D1(21).csv")%>% select(all_of(selected_columns))
+
+final_data_GER <- rbind(dataE_24, dataE_23, dataE_22, dataE_21, dataE_20, dataE_19, dataE_18,dataE_17, dataE_16, dataE_15, dataE_14, dataE_13, dataE_12, dataE_11, dataE_10, dataE_09, dataE_08, dataE_07, dataE_06, dataE_05, dataE_04, dataE_03) 
+
+write_csv(final_data_GER, "~/Documents/GitHub/ML_Final_Proj_Data/final_data_GER.csv")
+```
+
+```{r}
+final_data_GER_ENG_ESP <- rbind(final_data_GER, final_data_ENG, final_data_ESP)
+write_csv(final_data_GER_ENG_ESP, "~/Documents/GitHub/ML_Final_Proj_Data/final_data_GER_ENG_ESP.csv")
+```
+
+```{r}
+final_data_GER_ESP <- rbind(final_data_GER, final_data_ESP)
+write_csv(final_data_GER_ESP, "~/Documents/GitHub/ML_Final_Proj_Data/final_data_GER_ESP.csv")
+```
