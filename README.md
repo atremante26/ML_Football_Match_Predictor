@@ -1,9 +1,17 @@
 VIDEO PRESENTATION: https://youtu.be/_78TkQ1djPI
 
-My first Machine Learning Project. This project was built as the final project of my Machine Learning course in Spring 2024. It uses betting odds from Bet365 and William Hill to predict the outcomes of professional football matches. 
+This project was developed as the final project for my Machine Learning course in Spring 2024. It aims to predict the outcomes of professional football matches using betting odds from Bet365 and William Hill.
 
-Data: I downloaded data from 'https://www.football-data.co.uk/' for the English Premier League, Spanish La Liga, and German Bundesliga from 2002 to 2023. I filtered and wrangled the data in the 'ML_final.qmd' file. I used an ordinal encoder to encode the team names (Home, Away), a MinMax scaler to scale the numeric variables (betting odds), and I added polynomial features. 
+Data: I obtained data from 'https://www.football-data.co.uk/' for the English Premier League, Spanish La Liga, and German Bundesliga, spanning from 2002 to 2023. The data was filtered and processed in the 'ML_final.qmd' file. Key preprocessing steps included:
 
-Model: I built a CNN with 2 convolutional layers that use pooling and attention. I also used 3 fully connected layers with batch normalization and dropout (50%). I used Adam as my optimizer and Cross Entropy as my loss function. 
+- Encoding team names (Home, Away) using an ordinal encoder.
+- Scaling numeric variables (betting odds) with a MinMax scaler.
+- Adding polynomial features to enhance model performance.
+  
+Model: I designed a Convolutional Neural Network (CNN) with the following architecture:
 
-I included the model's performance for Premier League games from Matchweek 35 and Matchweek 36 of the 2023-24 season. Using these predictions and betting $5 per game on both betting sites (Bet365, William Hill), these predictions would have yieled an average winnings of $57.34 per week or ~$6 per game. 
+- 2 convolutional layers with pooling and attention mechanisms.
+- 3 fully connected layers with batch normalization and 50% dropout.
+- Adam optimizer and Cross Entropy loss function.
+  
+Results: The model's performance was evaluated on Premier League games from Matchweek 35 and Matchweek 36 of the 2023-24 season. Betting $5 per game on both Bet365 and William Hill, the model's predictions yielded an average weekly profit of $57.34, or approximately $6 per game.
